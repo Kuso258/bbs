@@ -10,7 +10,11 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        // $this->call(UsersTableSeeder::class);
+    {   
+        //user表数据填充
+        $this->call(UsersTableSeeder::class);
+
+        //topic表数据填充
+        $this->call(TopicsTableSeeder::class);
     }
 }
