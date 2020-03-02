@@ -25,5 +25,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
+        \App\Models\Topic::observe(\App\Observers\TopicObserver::class);
     }
 }
