@@ -54,8 +54,10 @@ class TopicsController extends Controller
         return view('topics.create_and_edit',compact('topic','categories'));
     }
 
-    public function destory(){
-        echo 1111;
+    public function destroy(Topic $topic){
+        $this->authorize('destroy', $topic);
+        $topic->delete();
+        return redirect()->route('topics.index')->with('success', '成功删除！');
     }
 
     public function create(Topic $topic){
