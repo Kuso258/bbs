@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Observers;
-
+// use App\Handlers\SlugTranslateHandler;
+use App\Jobs\TranslateSlug;
 use App\Models\Topic;
 //Eloquent 模型会触发许多事件（Event），我们可以对模型的生命周期内多个时间点进行监控：
 // creating, created, updating, updated, saving,
@@ -12,6 +13,16 @@ use App\Models\Topic;
 
 class TopicObserver{
     public function saving(Topic $topic){
+        //xxs过滤
+        // $topic->body = clean($topic->body, 'user_topic_body');
+
         $topic->excerpt = make_excerpt($topic->body);
+    }
+
+    public function saved(Topic $topic)
+    {
+        if (!$topic->slug) {
+            dispatch(new TranslateSlug($topic));
+        }
     }
 }
