@@ -32,7 +32,6 @@ class SlugTranslateHandler{
         $response = $http->get($api.$query);
 
         $result = json_decode($response->getBody(), true);
-
         if (isset($result['trans_result'][0]['dst'])) {
             return \Str::slug($result['trans_result'][0]['dst']);
         } else {

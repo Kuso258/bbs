@@ -41,4 +41,15 @@ class Topic extends Model
     public function scopeRecent($query){
         return $query->orderBy('created_at','desc');
     }
+
+    // public function link($params = [])
+    // {
+    //     return route('topics.show', array_merge([$this->id, $this->slug], $params));
+    // }
+
+    public function updateReplyCount()
+    {
+        $this->reply_count = $this->replies->count();
+        $this->save();
+    }
 }
