@@ -62,3 +62,6 @@ Route::resource('replies', 'RepliesController', ['only' => ['store', 'destroy']]
 
 //notification
 Route::resource('notifications', 'NotificationsController', ['only' => ['index']]);
+
+//permission-denied
+Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
