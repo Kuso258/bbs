@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Auth;
 use App\Models\User;
+use App\Models\Link;
 
 //图片上传
 use App\Handlers\ImageUploadHandler;
@@ -23,13 +24,14 @@ class TopicsController extends Controller
         ]);
     }
 
-    public function index(Request $request,Topic $topic,User $user){
+    public function index(Request $request,Topic $topic,User $user, Link $link){
         $topics = $topic->withOrder($request->order)
                         ->with('user','category') //laravel预加载
                         ->paginate(20);
         $active_users = $user->getActiveUsers();
         // dd($active_users);
-        return view('topics.index',compact('topics','active_users'));
+        $links = $link->getAllCached();
+        return view('topics.index',compact('topics','active_users','links'));
     }
 
     public function show(Topic $topic){

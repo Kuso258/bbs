@@ -21,5 +21,8 @@ class DatabaseSeeder extends Seeder
 
         //reply表数据填充
         $this->call(RepliesTableSeeder::class);
+
+        //link
+        $this->call(LinksTableSeeder::class);
     }
 }
