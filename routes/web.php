@@ -15,7 +15,7 @@
 //     return view('welcome');
 // });
 
-Route::get('/','PagesController@root')->name('root');
+Route::get('/','TopicsController@index')->name('root');
 
 // 此处是 Laravel 的用户认证路由 vendor/laravel/framework/src/Illuminate/Routing/Router.php中找到
 // Auth::routes();
