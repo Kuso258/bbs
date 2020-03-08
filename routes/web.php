@@ -65,3 +65,8 @@ Route::resource('notifications', 'NotificationsController', ['only' => ['index']
 
 //permission-denied
 Route::get('permission-denied', 'PagesController@permissionDenied')->name('permission-denied');
+
+//redis
+Route::get('hello', function(){ 
+    return Cache::get('larabbs_active_users');
+});
